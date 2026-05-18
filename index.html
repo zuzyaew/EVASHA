@@ -697,34 +697,118 @@
 
     }
 
-    /* MOBILE */
+/* MOBILE */
 
-    @media(max-width:899px){
+@media(max-width:899px){
 
-      .contact h2{
-        font-size:24px;
-      }
+  .contact h2{
+    font-size:24px;
+  }
 
-      .banner{
-        width:72%;
-      }
+  .banner{
+    width:72vw;
+  }
 
-      .banner-text{
-        font-size:14px;
+  .banner-title{
+    font-size:20px;
 
-        margin-top:14px;
+    bottom:14px;
 
-        letter-spacing:4px;
-      }
+    letter-spacing:2px;
+  }
 
-      .social{
-        width:42px;
-        height:42px;
+  .banner-text{
+    font-size:14px;
 
-        font-size:18px;
-      }
+    margin-top:14px;
 
-    }
+    letter-spacing:4px;
+  }
+
+  .social{
+    width:42px;
+    height:42px;
+
+    font-size:18px;
+  }
+
+}
+
+/* ОБЁРТКА БАННЕРА */
+
+.banner-wrap{
+  position:relative;
+
+  width:fit-content;
+
+  margin:0 auto;
+}
+
+/* КАРТИНКА */
+
+.banner{
+  width:420px;
+  max-width:72vw;
+
+  display:block;
+
+  border-radius:28px;
+}
+
+/* ПЛАВНОЕ ЗАТЕМНЕНИЕ СНИЗУ */
+
+.banner-wrap::after{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:42%;
+
+  border-radius:0 0 28px 28px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.92),
+      rgba(0,0,0,.55),
+      transparent
+    );
+
+  pointer-events:none;
+}
+
+/* НАЗВАНИЕ ТРЕКА */
+
+.banner-title{
+  position:absolute;
+
+  left:50%;
+  bottom:18px;
+
+  transform:translateX(-50%);
+
+  z-index:2;
+
+  font-size:32px;
+  font-weight:800;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+
+  white-space:nowrap;
+
+  color:#ff2a2a;
+
+  text-shadow:
+    0 0 10px rgba(255,0,0,.45);
+
+  text-align:center;
+}
 
   </style>
 </head>
@@ -770,19 +854,26 @@
       Контакты
 
     </a>
+  </div>
+
+  <div class="banner-wrap">
+
+     <img
+       class="banner"
+       src="OBLOGA.png"
+       alt="banner"
+       draggable="false"
+     >
+
+       <div class="banner-title">
+        Фредди Крюгер
+       </div>
 
   </div>
 
-  <img
-    class="banner"
-    src="OBLOGA.png"
-    alt="banner"
-    draggable="false"
-  >
-
-  <div class="banner-text">
-    new single out now
-  </div>
+ <div class="banner-text">
+ new single out now
+ </div>
 
   <div class="content">
 
