@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Дискография</title>
+  <link rel="icon" href="favicon.png">
+
+  <!-- Шрифт -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+
+      font-family:'Montserrat', sans-serif;
+
+      padding:40px 20px;
+
+      overflow-x:hidden;
+    }
+
+    /* КОНТЕЙНЕР */
+
+    .container{
+      width:100%;
+      max-width:1200px;
+
+      margin:0 auto;
+    }
+
+    /* ЗАГОЛОВОК */
+
+    .title{
+      text-align:center;
+
+      font-size:56px;
+
+      font-weight:800;
+
+      margin-bottom:60px;
+
+      letter-spacing:4px;
+
+      text-transform:uppercase;
+    }
+
+    /* СЕТКА */
+
+    .grid{
+      display:grid;
+
+      grid-template-columns:
+      repeat(auto-fit, minmax(260px,1fr));
+
+      gap:30px;
+    }
+
+    /* КАРТОЧКА */
+
+    .card{
+      background:#0f0f0f;
+
+      border-radius:28px;
+
+      overflow:hidden;
+
+      color:white;
+
+      transition:0.35s;
+
+      border:1px solid #1c1c1c;
+
+      position:relative;
+
+      cursor:pointer;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+
+      border-color:#333;
+
+      box-shadow:
+        0 0 30px rgba(255,255,255,0.08);
+    }
+
+    /* ОБЛОЖКА */
+
+    .cover-wrapper{
+      position:relative;
+
+      overflow:hidden;
+    }
+
+    .cover{
+      width:100%;
+
+      aspect-ratio:1/1;
+
+      object-fit:cover;
+
+      display:block;
+
+      transition:0.5s;
+    }
+
+    .card:hover .cover{
+      transform:scale(1.04);
+    }
+
+    /* NOISE */
+
+    .cover-wrapper::after{
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+
+      opacity:0.05;
+
+      mix-blend-mode:soft-light;
+
+      pointer-events:none;
+    }
+
+    /* ИНФА */
+
+    .info{
+      padding:24px;
+    }
+
+    .track{
+      font-size:24px;
+
+      font-weight:700;
+
+      margin-bottom:8px;
+    }
+
+     .track-extra{
+       color:#8a8a8a;
+
+       font-size:16px;
+
+       font-weight:400;
+
+       margin-left:4px;
+     }
+
+    .listen{
+      color:#9d9d9d;
+
+      letter-spacing:2px;
+
+      font-size:12px;
+
+      text-transform:uppercase;
+    }
+
+    /* КНОПКА НАЗАД */
+
+    .back{
+      position:fixed;
+
+      top:25px;
+      left:25px;
+
+      text-decoration:none;
+
+      color:white;
+
+      background:#111;
+
+      border:1px solid #222;
+
+      padding:14px 22px;
+
+      border-radius:999px;
+
+      transition:0.25s;
+
+      z-index:999;
+    }
+
+    .back:hover{
+      background:white;
+      color:black;
+    }
+
+    /* ========================= */
+    /* MODAL */
+    /* ========================= */
+
+    .modal{
+      position:fixed;
+
+      inset:0;
+
+      background:rgba(0,0,0,0.78);
+
+      backdrop-filter:blur(14px);
+
+      display:flex;
+
+      justify-content:center;
+      align-items:center;
+
+      opacity:0;
+
+      pointer-events:none;
+
+      transition:0.45s;
+
+      z-index:99999;
+    }
+
+    .modal.active{
+      opacity:1;
+
+      pointer-events:auto;
+    }
+
+    /* CARD */
+
+    .modal-card{
+      width:90%;
+      max-width:430px;
+
+      background:#0f0f0f;
+
+      border:1px solid #222;
+
+      border-radius:34px;
+
+      padding:26px;
+
+      text-align:center;
+
+      position:relative;
+
+      transform:
+        perspective(1000px)
+        rotateY(90deg)
+        scale(0.7);
+
+      opacity:0;
+
+      transition:
+        transform 0.6s cubic-bezier(.2,.8,.2,1),
+        opacity 0.45s;
+    }
+
+    .modal.active .modal-card{
+      transform:
+        perspective(1000px)
+        rotateY(0deg)
+        scale(1);
+
+      opacity:1;
+    }
+
+    .modal-cover{
+      width:100%;
+
+      border-radius:24px;
+
+      margin-bottom:24px;
+    }
+
+    .modal-title{
+      font-size:34px;
+
+      font-weight:800;
+
+      margin-bottom:24px;
+    }
+
+    .platforms{
+      display:flex;
+
+      flex-direction:column;
+
+      gap:14px;
+    }
+
+    .platforms a{
+      text-decoration:none;
+
+      color:white;
+
+      background:#151515;
+
+      border:1px solid #2a2a2a;
+
+      padding:16px;
+
+      border-radius:18px;
+
+      transition:0.3s;
+
+      font-weight:600;
+    }
+
+    .platforms a:hover{
+      background:white;
+
+      color:black;
+
+      transform:translateY(-2px);
+    }
+
+    .close-btn{
+      position:absolute;
+
+      top:16px;
+      right:18px;
+
+      width:42px;
+      height:42px;
+
+      border-radius:50%;
+
+      border:none;
+
+      background:#151515;
+
+      color:white;
+
+      font-size:18px;
+
+      cursor:pointer;
+
+      transition:0.25s;
+    }
+
+    .close-btn:hover{
+      background:white;
+
+      color:black;
+    }
+
+    /* МОБИЛКА */
+
+    @media(max-width:700px){
+
+      .title{
+        font-size:34px;
+
+        margin-bottom:40px;
+      }
+
+      .track{
+        font-size:20px;
+      }
+
+      .modal-title{
+        font-size:26px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- НАЗАД -->
+
+  <a href="/" class="back">
+    ← Назад
+  </a>
+
+  <div class="container">
+
+    <h1 class="title">
+      Дискография
+    </h1>
+
+    <div class="grid">
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Фредди Крюгер',
+            'freddy.jpg',
+            'https://music.yandex.ru/album/41866808?utm_source=web&utm_medium=copy_link',
+            'https://open.spotify.com/album/6Q5OvJck1VOQpT2PVLpQau?si=Jdw60RJaTrWLPVqEghQxeA',
+            'https://music.apple.com/ru/song/%D1%84%D1%80%D0%B5%D0%B4%D0%B4%D0%B8-%D0%BA%D1%80%D1%8E%D0%B3%D0%B5%D1%80-prod-by-magluziano/6766230073',
+            'https://youtu.be/urQUwxe9RgA?si=hUIM18ffTZlm4PLC'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="freddy.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Фредди Крюгер
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'гимн денег',
+      'gimndeneg.jpg',
+      'https://music.yandex.ru/album/41489958?utm_source=web&utm_medium=copy_link',
+      'https://open.spotify.com/album/1DU0mLC1yp3cJilfB4MGDg?si=SUGYI2rvSbKbcyh2LGBeRw',
+      'https://music.apple.com/ru/album/%D0%B3%D0%B8%D0%BC%D0%BD-%D0%B4%D0%B5%D0%BD%D0%B5%D0%B3-single/1891789225',
+      'https://youtu.be/LE3jjUtaunI?si=fAtNGei6CBmrN1TR'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="gimndeneg.jpg"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      гимн денег
+      <span class="track-extra">
+        (feat. Mag Luzi)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'ГРИНГО',
+            'gringo.jpg',
+            'https://music.yandex.ru/album/40616441?utm_source=web&utm_medium=copy_link',
+            'https://open.spotify.com/album/6LsP8GY7rajJY8r8c7CZz1?si=uan-SlBDRHGREGpBJt0p9g',
+            'https://music.apple.com/ru/album/%D0%B3%D1%80%D0%B8%D0%BD%D0%B3%D0%BE-prod-by-magluziano-thiszoowe-single/1876237168',
+            'https://youtu.be/vlTCsFXu5aI?si=_N3f78v1p1qdXTAm'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="gringo.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+          
+          <div class="track">
+           ГРИНГО 
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            '150 квадратов',
+            '150kvadratov.jpg',
+            'https://music.yandex.ru/album/39714939?utm_source=web&utm_medium=copy_link',
+            'https://open.spotify.com/album/3dBFe1t7LF2DHYMda1j1bi?si=-SCa2rENRmaTiFML-kJESQ',
+            'https://music.apple.com/us/album/1861802632?mt=1&at=1000lqjf&ct=bq&app=music',
+            'https://youtu.be/lKJDANRLMo4?si=B0XeOc0k_6tWA6zL'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="150kvadratov.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            150 квадратов
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'Подарила тебя',
+      'podarilatebya.jpg',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="podarilatebya.jpg"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      Подарила тебя
+      <span class="track-extra">
+        (feat. Andro Jango)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'слёзы',
+            'tears.jpg',
+            'https://music.yandex.ru/album/39244320?utm_source=bandlink&utm_medium=EVASHA&utm_campaign=%D1%81%D0%BB%D1%91%D0%B7%D1%8B&utm_term=POPuE',
+            'https://open.spotify.com/album/3dhAkq4dmE9uCyWxPiB8kG',
+            'https://music.apple.com/ru/album/1854397238?mt=1&at=1000lqjf&ct=bq&app=music',
+            'https://youtu.be/mVI-odXOq5M?si=byy-H6BK-yVFSjaT'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="tears.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            слёзы
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            '2k17',
+            '2k17.jpg',
+            'https://music.yandex.ru/album/38665935?utm_source=bandlink&utm_medium=EVASHA&utm_campaign=2%D0%BA17&utm_term=teNdG',
+            'https://open.spotify.com/album/5OCGwm5AAI8T3h9BjRN6Qp',
+            'https://music.apple.com/ru/album/1846832942?mt=1&at=1000lqjf&ct=bq&app=music',
+            'https://youtu.be/vdeEiytBxF8?si=0mL-35KpKdIGcrNy'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="2k17.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            2k17
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'типа любовь',
+            'tipalove.jpg',
+            'https://music.yandex.ru/album/18533715',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="tipalove.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            типа любовь
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'ДНК',
+            'dna.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="dna.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            ДНК
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'самый грустный',
+      'evasad.jpg',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="evasad.jpg"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      самый грустный
+      <span class="track-extra">
+        (feat. Andro Jango)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'dalove',
+            'dalove.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="dalove.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            da love
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'Она и я',
+      'onayaclub.jpg',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="onayaclub.jpg"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      Она и я
+      <span class="track-extra">
+        (Club Version)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'Она и я',
+      'onaya.png',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="onaya.png"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      Она и я
+      <span class="track-extra">
+        (feat. Mag Luzi)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'Ты мой',
+      'drugphonk.png',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="drugphonk.png"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      Ты мой
+      <span class="track-extra">
+        (Phonk Remix)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Ты мой',
+            'drug.png',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="drug.png"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Ты мой
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Gimme more',
+            'gimmemore.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="gimmemore.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Gimme more
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Sorry, bye bye',
+            'sorrybye.png',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="sorrybye.png"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Sorry, bye bye
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Скажи моё имя',
+            'imya.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="imya.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Скажи моё имя
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'HEADSHOT',
+            'headshot.jpg',
+            'https://music.yandex.ru/album/18533715',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="headshot.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            HEADSHOT
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'Мало тебя',
+      'malotebya.jpg',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="malotebya.jpg"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      Мало тебя
+      <span class="track-extra">
+        (feat. ГУДРОН)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Лучше, чем я',
+            'better.jpg',
+            'https://music.yandex.ru/album/18533715',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="better.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Лучше, чем я
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'Больно',
+      'bolno.jpg',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="bolno.jpg"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      Больно
+      <span class="track-extra">
+        (feat. GRANGIE)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Pina Colada',
+            'pinacolada.jpg',
+            'https://music.yandex.ru/album/18533715',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="pinacolada.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Pina Colada
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Просто друг',
+            'friend.png',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="friend.png"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Просто друг
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Заново',
+            'anew.png',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="anew.png"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Заново
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Терапия',
+            'terapiya.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="terapiya.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Терапия
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ТРЕК -->
+
+<div class="card"
+     onclick="openCard(
+      'Салют',
+      'salyut.jpg',
+      '#',
+      '#',
+      '#',
+      '#'
+     )">
+
+  <div class="cover-wrapper">
+
+    <img
+      src="salyut.jpg"
+      class="cover"
+      draggable="false"
+    >
+
+  </div>
+
+  <div class="info">
+
+    <div class="track">
+      Салют
+      <span class="track-extra">
+        (feat. ГУДРОН)
+      </span>
+    </div>
+
+    <div class="listen">
+      Слушать
+    </div>
+
+  </div>
+
+</div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Ядовитая',
+            'yadovitaya.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="yadovitaya.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Ядовитая
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Море',
+            'sea.jpg',
+            'https://music.yandex.ru/album/18533715',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="sea.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Море
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Идол',
+            'idol.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="idol.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Идол
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Чай вдвоём',
+            'chaivdvoyom.jpg',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="chaivdvoyom.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Чай вдвоём
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'В темноте',
+            'vtemnote.png',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="vtemnote.png"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            В темноте
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Дыхание',
+            'breath.png',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="breath.png"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Дыхание
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Вкусная бейба',
+            'vkusnayababy.png',
+            '',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="vkusnayababy.png"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Вкусная бейба
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Не подходи',
+            'nepodhodi.jpg',
+            'https://music.yandex.ru/album/25907157',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="nepodhodi.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Не подходи
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ТРЕК -->
+
+      <div class="card"
+           onclick="openCard(
+            'Завяжи',
+            'tie.jpg',
+            'https://music.yandex.ru/album/18533715',
+            '#',
+            '#',
+            '#'
+           )">
+
+        <div class="cover-wrapper">
+
+          <img
+            src="tie.jpg"
+            class="cover"
+            draggable="false"
+          >
+
+        </div>
+
+        <div class="info">
+
+          <div class="track">
+            Завяжи
+          </div>
+
+          <div class="listen">
+            Слушать
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL -->
+
+  <div class="modal" id="modal">
+
+    <div class="modal-card">
+
+      <button class="close-btn"
+              onclick="closeCard()">
+
+        ✕
+
+      </button>
+
+      <img
+        src=""
+        class="modal-cover"
+        id="modalCover"
+      >
+
+      <div class="modal-title"
+           id="modalTitle">
+      </div>
+
+      <div class="platforms">
+
+        <a id="yandexLink"
+           target="_blank">
+
+           Яндекс Музыка
+
+        </a>
+
+        <a id="spotifyLink"
+           target="_blank">
+
+           Spotify
+
+        </a>
+
+        <a id="appleLink"
+           target="_blank">
+
+           Apple Music
+
+        </a>
+
+        <a id="youtubeLink"
+           target="_blank">
+
+           YouTube
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const modal =
+      document.getElementById('modal')
+
+    function openCard(
+      title,
+      image,
+      yandex,
+      spotify,
+      apple,
+      youtube
+    ){
+
+      modal.classList.add('active')
+
+      document
+        .getElementById('modalTitle')
+        .innerText = title
+
+      document
+        .getElementById('modalCover')
+        .src = image
+
+      document
+        .getElementById('yandexLink')
+        .href = yandex
+
+      document
+        .getElementById('spotifyLink')
+        .href = spotify
+
+      document
+        .getElementById('appleLink')
+        .href = apple
+
+      document
+        .getElementById('youtubeLink')
+        .href = youtube
+
+    }
+
+    function closeCard(){
+
+      modal.classList.remove('active')
+
+    }
+
+    modal.addEventListener('click', (e) => {
+
+      if(e.target === modal){
+        closeCard()
+      }
+
+    })
+
+  </script>
+
+</body>
+</html>

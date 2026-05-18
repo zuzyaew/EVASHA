@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+
+  <title>EVASHA — Главная страница</title>
+
+  <link rel="icon" href="favicon.png">
+
+  <meta
+    name="description"
+    content="Официальный сайт EVASHA. Музыка, релизы, соцсети, дискография и контакты."
+  >
+
+  <!-- Open Graph -->
+
+  <meta property="og:title"
+        content="EVASHA">
+
+  <meta property="og:description"
+        content="Официальный сайт артиста">
+
+  <meta property="og:image"
+        content="https://evasha.ru/opengraph.jpg">
+
+  <meta property="og:type"
+        content="website">
+
+  <meta property="og:url"
+        content="https://evasha.ru">
+
+  <!-- Шрифт -->
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <!-- Иконки -->
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#050505;
+      font-family:'Montserrat',sans-serif;
+      color:white;
+
+      display:flex;
+      justify-content:center;
+
+      padding:30px 15px;
+
+      overflow-x:hidden;
+    }
+
+    .container{
+      width:100%;
+      max-width:420px;
+
+      background:#0b0b0b;
+
+      border-radius:24px;
+      overflow:hidden;
+
+      box-shadow:0 0 40px rgba(255,255,255,0.05);
+
+      transition:0.3s;
+    }
+
+    /* LOGO */
+
+    .logo{
+      position:relative;
+
+      width:100%;
+
+      text-align:center;
+
+      font-size:48px;
+      font-weight:800;
+
+      letter-spacing:3px;
+
+      display:inline-block;
+
+      color:white;
+
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.4),
+        0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .logo::before,
+    .logo::after{
+      content:"✦";
+
+      position:absolute;
+
+      color:white;
+
+      font-size:16px;
+
+      animation:sparkle 2s infinite ease-in-out;
+
+      text-shadow:
+        0 0 8px white,
+        0 0 18px white,
+        0 0 30px white;
+    }
+
+    .logo::before{
+      top:5px;
+      left:-12px;
+    }
+
+    .logo::after{
+      bottom:0;
+      right:-14px;
+
+      animation-delay:1s;
+    }
+
+    .spark{
+      position:absolute;
+
+      color:white;
+
+      font-size:12px;
+
+      animation:sparkle 3s infinite ease-in-out;
+
+      text-shadow:
+        0 0 8px white,
+        0 0 18px white;
+    }
+
+    .spark1{
+      top:8px;
+      left:32%;
+    }
+
+    .spark2{
+      top:-6px;
+      left:52%;
+
+      animation-delay:1s;
+    }
+
+    .spark3{
+      bottom:4px;
+      left:67%;
+
+      animation-delay:2s;
+    }
+
+    @keyframes sparkle{
+
+      0%{
+        opacity:0;
+        transform:scale(0.4) rotate(0deg);
+      }
+
+      50%{
+        opacity:1;
+        transform:scale(1.2) rotate(20deg);
+      }
+
+      100%{
+        opacity:0;
+        transform:scale(0.4) rotate(0deg);
+      }
+
+    }
+
+    /* BANNER */
+
+    .banner{
+      width:35%;
+      height:auto;
+
+      display:block;
+
+      margin:0 auto;
+
+      border-radius:24px;
+    }
+
+    .banner-text{
+      text-align:center;
+
+      margin-top:18px;
+
+      font-size:20px;
+
+      font-weight:700;
+
+      color:white;
+
+      opacity:0.9;
+
+      text-transform:uppercase;
+
+      letter-spacing:8px;
+
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.5);
+    }
+
+    /* CONTENT */
+
+    .content{
+      padding:30px 25px;
+    }
+
+    /* TOP BUTTONS */
+
+    .top-buttons{
+      display:flex;
+
+      justify-content:center;
+
+      gap:14px;
+
+      margin-bottom:20px;
+
+      flex-wrap:wrap;
+    }
+
+    .top-btn{
+      text-decoration:none;
+
+      color:white;
+
+      background:#111;
+
+      border:1px solid #222;
+
+      padding:14px 26px;
+
+      border-radius:999px;
+
+      font-size:14px;
+
+      letter-spacing:1px;
+
+      transition:0.3s;
+    }
+
+    .top-btn:hover{
+      background:white;
+
+      color:black;
+
+      transform:translateY(-2px);
+    }
+
+    /* MUSIC LINKS */
+
+    .music-links{
+      display:flex;
+      flex-direction:column;
+
+      gap:16px;
+
+      margin-bottom:40px;
+    }
+
+    .music-btn{
+      display:flex;
+
+      justify-content:space-between;
+      align-items:center;
+
+      text-decoration:none;
+
+      color:white;
+
+      background:#151515;
+
+      border:1px solid #2a2a2a;
+
+      padding:16px 20px;
+
+      border-radius:50px;
+
+      transition:0.3s;
+
+      position:relative;
+
+      overflow:hidden;
+    }
+
+    .music-btn span{
+      font-weight:600;
+
+      position:relative;
+      z-index:2;
+    }
+
+    .music-btn::before{
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      opacity:0;
+
+      transition:0.3s;
+
+      z-index:1;
+    }
+
+    .music-btn:hover{
+      transform:translateY(-3px);
+
+      border-color:transparent;
+    }
+
+    .music-btn:hover::before{
+      opacity:1;
+    }
+
+    .yandex::before{
+      background:
+      linear-gradient(
+        135deg,
+        #ffcc00,
+        #ff7a00
+      );
+    }
+
+    .yandex:hover{
+      color:black;
+    }
+
+    .apple::before{
+      background:
+      linear-gradient(
+        135deg,
+        #ff2d55,
+        #ffffff
+      );
+    }
+
+    .apple:hover{
+      color:black;
+    }
+
+    .spotify::before{
+      background:
+      linear-gradient(
+        135deg,
+        #1ed760,
+        #b3ffcb
+      );
+    }
+
+    .spotify:hover{
+      color:black;
+    }
+
+    .vk::before{
+      background:
+      linear-gradient(
+        135deg,
+        #2787f5,
+        #7bb6ff
+      );
+    }
+
+    .youtube::before{
+      background:
+      linear-gradient(
+        135deg,
+        #ff0000,
+        #ff5a5a
+      );
+    }
+    /* SOCIALS */
+
+    .socials{
+      display:flex;
+
+      justify-content:center;
+      flex-wrap:wrap;
+
+      gap:14px;
+
+      margin-bottom:45px;
+    }
+
+    .social{
+      width:52px;
+      height:52px;
+
+      border-radius:50%;
+
+      background:white;
+      color:black;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      text-decoration:none;
+
+      font-size:22px;
+
+      transition:0.25s;
+    }
+
+    .social:hover{
+      transform:scale(1.1);
+    }
+
+    /* CONTACT */
+
+    .contact{
+      background:#111;
+
+      border-radius:22px;
+
+      padding:30px 20px;
+
+      text-align:center;
+    }
+
+    .contact h2{
+      font-size:34px;
+
+      margin-bottom:18px;
+
+      line-height:1.1;
+    }
+
+    .mail{
+      color:white;
+
+      text-decoration:none;
+
+      font-size:28px;
+      font-weight:700;
+
+      transition:0.2s;
+
+      word-break:break-word;
+    }
+
+    .mail:hover{
+      color:#c23b4f;
+    }
+
+    /* FOOTER */
+
+    .footer{
+      text-align:center;
+
+      margin-top:70px;
+
+      padding-bottom:10px;
+
+      font-size:12px;
+
+      color:#6f6f6f;
+
+      letter-spacing:2px;
+
+      text-transform:uppercase;
+    }
+
+    .footer-link{
+      color:#8a8a8a;
+
+      text-decoration:none;
+
+      transition:0.3s;
+    }
+
+    .footer-link:hover{
+      color:white;
+    }
+
+    /* REVEAL */
+
+    .reveal{
+      opacity:0;
+
+      transform:translateY(70px);
+
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+    .reveal.active{
+      opacity:1;
+
+      transform:translateY(0);
+    }
+
+    /* LOADER */
+
+    #loader{
+      position:fixed;
+
+      inset:0;
+
+      background:black;
+
+      display:flex;
+      flex-direction:column;
+
+      justify-content:center;
+      align-items:center;
+
+      gap:20px;
+
+      z-index:99999;
+
+      transition:
+        opacity 1s ease,
+        visibility 1s ease;
+    }
+
+    .loader-star{
+      color:white;
+
+      font-size:42px;
+
+      text-shadow:
+        0 0 10px white,
+        0 0 20px white,
+        0 0 40px white;
+
+      animation:
+        starPulse 2s infinite ease-in-out,
+        starRotate 5s linear infinite;
+    }
+
+    .loader-text{
+      color:white;
+
+      font-size:12px;
+
+      letter-spacing:8px;
+
+      opacity:0.7;
+    }
+
+    @keyframes starPulse{
+
+      0%{
+        opacity:0.4;
+        transform:scale(0.8);
+      }
+
+      50%{
+        opacity:1;
+        transform:scale(1.15);
+      }
+
+      100%{
+        opacity:0.4;
+        transform:scale(0.8);
+      }
+
+    }
+
+    @keyframes starRotate{
+
+      from{
+        transform:rotate(0deg);
+      }
+
+      to{
+        transform:rotate(360deg);
+      }
+
+    }
+
+    #loader.hide{
+      opacity:0;
+
+      visibility:hidden;
+    }
+
+    /* IMAGES */
+
+    img{
+      pointer-events:none;
+
+      user-select:none;
+
+      -webkit-user-drag:none;
+
+      -webkit-touch-callout:none;
+    }
+
+    /* SCROLLBAR */
+
+    ::-webkit-scrollbar{
+      width:10px;
+    }
+
+    ::-webkit-scrollbar-track{
+      background:#0b0b0b;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:
+      linear-gradient(
+        to bottom,
+        #ffffff,
+        #666666
+      );
+
+      border-radius:20px;
+    }
+
+    /* DESKTOP */
+
+    @media(min-width:900px){
+
+      body{
+        padding:50px;
+      }
+
+      .container{
+        max-width:1200px;
+
+        border-radius:35px;
+      }
+
+      .logo{
+        font-size:74px;
+
+        letter-spacing:5px;
+      }
+
+      .content{
+        padding:60px 80px;
+      }
+
+      .music-links{
+        gap:22px;
+
+        margin-bottom:60px;
+      }
+
+      .music-btn{
+        padding:24px 34px;
+
+        border-radius:70px;
+      }
+
+      .music-btn span{
+        font-size:24px;
+      }
+
+      .social{
+        width:62px;
+        height:62px;
+
+        font-size:26px;
+      }
+
+      .contact{
+        padding:50px;
+
+        border-radius:30px;
+      }
+
+      .contact h2{
+        font-size:52px;
+      }
+
+      .mail{
+        font-size:24px;
+      }
+
+    }
+
+    /* MOBILE */
+
+    @media(max-width:899px){
+
+      .contact h2{
+        font-size:24px;
+      }
+
+      .banner{
+        width:72%;
+      }
+
+      .banner-text{
+        font-size:14px;
+
+        margin-top:14px;
+
+        letter-spacing:4px;
+      }
+
+      .social{
+        width:42px;
+        height:42px;
+
+        font-size:18px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div id="loader">
+
+  <div class="loader-star">
+    ✦
+  </div>
+
+  <div class="loader-text">
+    L O A D I N G
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="logo">
+
+    EVASHA
+
+    <span class="spark spark1">✦</span>
+    <span class="spark spark2">✦</span>
+    <span class="spark spark3">✦</span>
+
+  </div>
+
+  <div class="top-buttons">
+
+    <a href="/discography"
+       class="top-btn">
+
+      Дискография
+
+    </a>
+
+    <a href="/contactus"
+       class="top-btn">
+
+      Контакты
+
+    </a>
+
+  </div>
+
+  <img
+    class="banner"
+    src="OBLOGA.png"
+    alt="banner"
+    draggable="false"
+  >
+
+  <div class="banner-text">
+    new single out now
+  </div>
+
+  <div class="content">
+
+    <div class="music-links reveal">
+      <a href="https://music.yandex.ru/album/41866808?utm_source=bandlink&utm_medium=EVASHA&utm_campaign=%D0%A4%D1%80%D0%B5%D0%B4%D0%B4%D0%B8%20%D0%9A%D1%80%D1%8E%D0%B3%D0%B5%D1%80%20(prod.by%20magluziano)&utm_term=EwLSS"
+         class="music-btn yandex"
+         target="_blank">
+
+        <span>Яндекс Музыка</span>
+        <span>Слушать</span>
+
+      </a>
+
+      <a href="https://music.apple.com/ru/album/1896244770?app=music&mt=1&at=1000lqjf&ct=bq&Is=1&ls=1"
+         class="music-btn apple"
+         target="_blank">
+
+        <span>Apple Music</span>
+        <span>Слушать</span>
+
+      </a>
+
+      <a href="https://open.spotify.com/album/6Q5OvJck1VOQpT2PVLpQau?si=69AF06tjQpGVBi3HH16N5g"
+         class="music-btn spotify"
+         target="_blank">
+
+        <span>Spotify</span>
+        <span>Слушать</span>
+
+      </a>
+
+      <a href="https://music.vk.com/link/eLpox"
+         class="music-btn vk"
+         target="_blank">
+
+        <span>VK Музыка</span>
+        <span>Слушать</span>
+
+      </a>
+
+      <a href="https://youtu.be/urQUwxe9RgA?si=-X_8cC4OQguhHPZL"
+         class="music-btn youtube"
+         target="_blank">
+
+        <span>YouTube</span>
+        <span>Слушать</span>
+
+      </a>
+
+    </div>
+
+    <div class="socials reveal">
+
+      <a href="https://instagram.com/evalyubimova_"
+         class="social"
+         target="_blank">
+
+        <i class="fa-brands fa-instagram"></i>
+
+      </a>
+
+      <a href="https://tiktok.com/@evasha_"
+         class="social"
+         target="_blank">
+
+        <i class="fa-brands fa-tiktok"></i>
+
+      </a>
+
+      <a href="https://t.me/evashatg"
+         class="social"
+         target="_blank">
+
+        <i class="fa-brands fa-telegram"></i>
+
+      </a>
+
+      <a href="https://vk.com/evasha.music"
+         class="social"
+         target="_blank">
+
+        <i class="fa-brands fa-vk"></i>
+
+      </a>
+
+      <a href="https://www.youtube.com/@EVASHA_MUSIC"
+         class="social"
+         target="_blank">
+
+        <i class="fa-brands fa-youtube"></i>
+
+      </a>
+
+    </div>
+
+    <div class="contact reveal">
+
+      <h2>
+        Сотрудничество
+      </h2>
+
+      <a class="mail"
+         href="mailto:evashaa@inbox.ru">
+
+        Почта
+
+      </a>
+
+      <br><br>
+
+      <a class="mail"
+         href="https://t.me/valevskueva"
+         target="_blank">
+
+        Telegram
+
+      </a>
+
+    </div>
+
+    <footer class="footer">
+
+      © 2026 EVASHA — все права защищены
+
+      <br><br>
+
+      Возникли проблемы?
+
+      <a href="mailto:zuzyaew@gmail.com"
+         class="footer-link">
+
+         Напишите нам
+
+      </a>
+
+    </footer>
+
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
+
+<script>
+
+  const lenis = new Lenis({
+    duration:1.2,
+    smoothWheel:true
+  })
+
+  function raf(time){
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  }
+
+  requestAnimationFrame(raf)
+
+</script>
+
+<script>
+
+  const reveals =
+    document.querySelectorAll('.reveal')
+
+  function revealOnScroll(){
+
+    reveals.forEach((element) => {
+
+      const windowHeight =
+        window.innerHeight
+
+      const revealTop =
+        element.getBoundingClientRect().top
+
+      const revealPoint = 100
+
+      if(revealTop < windowHeight - revealPoint){
+
+        element.classList.add('active')
+
+      }
+
+    })
+
+  }
+
+  window.addEventListener(
+    'scroll',
+    revealOnScroll
+  )
+
+  revealOnScroll()
+
+</script>
+
+<script>
+
+  window.addEventListener('load',() => {
+
+    setTimeout(() => {
+
+      document
+        .getElementById('loader')
+        .classList
+        .add('hide')
+
+    },250)
+
+  })
+
+</script>
+
+</body>
+</html>

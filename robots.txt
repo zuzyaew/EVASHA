@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evasha.ru/sitemap.xml

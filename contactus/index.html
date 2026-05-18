@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+
+  <title>EVASHA — Контакты</title>
+  <link rel="icon" href="favicon.png">
+
+  <!-- Шрифт -->
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <!-- Иконки -->
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#050505;
+
+      color:white;
+
+      font-family:'Montserrat', sans-serif;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      min-height:100vh;
+
+      padding:20px;
+    }
+
+    .container{
+      width:100%;
+
+      max-width:700px;
+
+      background:#0b0b0b;
+
+      border-radius:30px;
+
+      padding:50px 30px;
+
+      text-align:center;
+
+      border:1px solid #1d1d1d;
+    }
+
+    .title{
+      font-size:54px;
+
+      font-weight:800;
+
+      margin-bottom:45px;
+
+      letter-spacing:3px;
+
+      text-transform:uppercase;
+    }
+
+    .contact-list{
+      display:flex;
+
+      flex-direction:column;
+
+      gap:20px;
+    }
+
+    .contact-btn{
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      text-decoration:none;
+
+      color:white;
+
+      background:#111;
+
+      border:1px solid #222;
+
+      padding:22px 24px;
+
+      border-radius:24px;
+
+      transition:0.3s;
+    }
+
+    .contact-btn:hover{
+      transform:translateY(-3px);
+
+      background:#181818;
+    }
+
+    .left{
+      display:flex;
+
+      align-items:center;
+
+      gap:16px;
+    }
+
+    .left i{
+      font-size:24px;
+    }
+
+    .name{
+      font-size:18px;
+
+      font-weight:700;
+    }
+
+    .go{
+      opacity:0.5;
+    }
+
+    .back{
+      position:fixed;
+
+      top:25px;
+      left:25px;
+
+      text-decoration:none;
+
+      color:white;
+
+      background:#111;
+
+      border:1px solid #222;
+
+      padding:14px 22px;
+
+      border-radius:999px;
+
+      transition:0.25s;
+    }
+
+    .back:hover{
+      background:white;
+
+      color:black;
+    }
+
+    @media(max-width:700px){
+
+      .title{
+        font-size:34px;
+      }
+
+      .contact-btn{
+        padding:18px;
+      }
+
+      .name{
+        font-size:16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- НАЗАД -->
+
+  <a href="/" class="back">
+    ← Назад
+  </a>
+
+  <div class="container">
+
+    <h1 class="title">
+      Контакты
+    </h1>
+
+    <div class="contact-list">
+
+      <!-- TELEGRAM -->
+
+      <a href="https://t.me/valevskueva"
+         target="_blank"
+         class="contact-btn">
+
+        <div class="left">
+
+          <i class="fa-brands fa-telegram"></i>
+
+          <div class="name">
+            Telegram
+          </div>
+
+        </div>
+
+        <div class="go">
+          →
+        </div>
+
+      </a>
+
+      <!-- MAIL -->
+
+      <a href="mailto:evashaa@inbox..ru"
+         class="contact-btn">
+
+        <div class="left">
+
+          <i class="fa-solid fa-envelope"></i>
+
+          <div class="name">
+            Почта
+          </div>
+
+        </div>
+
+        <div class="go">
+          →
+        </div>
+
+      </a>
+
+      <!-- INSTAGRAM -->
+
+      <a href="https://instagram.com/valevsku"
+         target="_blank"
+         class="contact-btn">
+
+        <div class="left">
+
+          <i class="fa-brands fa-instagram"></i>
+
+          <div class="name">
+            Instagram
+          </div>
+
+        </div>
+
+        <div class="go">
+          →
+        </div>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

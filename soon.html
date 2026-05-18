@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+
+  <title>EVASHA — Soon</title>
+  <link rel="icon" href="favicon.png">
+
+  <!-- Шрифт -->
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#050505;
+
+      color:white;
+
+      font-family:'Montserrat', sans-serif;
+
+      min-height:100vh;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      padding:20px;
+
+      overflow:hidden;
+    }
+
+    /* ФОНОВЫЙ GLOW */
+
+    .bg-glow{
+      position:fixed;
+
+      width:500px;
+      height:500px;
+
+      background:radial-gradient(
+        circle,
+        rgba(255,255,255,0.06),
+        transparent 70%
+      );
+
+      filter:blur(80px);
+
+      z-index:0;
+
+      animation:float 8s ease-in-out infinite;
+    }
+
+    @keyframes float{
+
+      0%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-25px);
+      }
+
+      100%{
+        transform:translateY(0px);
+      }
+
+    }
+
+    /* КОНТЕЙНЕР */
+
+    .container{
+      position:relative;
+
+      z-index:2;
+
+      width:100%;
+      max-width:720px;
+
+      background:#0b0b0b;
+
+      border:1px solid #1d1d1d;
+
+      border-radius:34px;
+
+      padding:70px 40px;
+
+      text-align:center;
+
+      box-shadow:
+        0 0 60px rgba(255,255,255,0.03);
+    }
+
+    /* ИКОНКА */
+
+    .star{
+      font-size:48px;
+
+      margin-bottom:25px;
+
+      animation:blink 2s infinite;
+    }
+
+    @keyframes blink{
+
+      0%{
+        opacity:0.4;
+        transform:scale(1);
+      }
+
+      50%{
+        opacity:1;
+        transform:scale(1.08);
+      }
+
+      100%{
+        opacity:0.4;
+        transform:scale(1);
+      }
+
+    }
+
+    /* ЗАГОЛОВОК */
+
+    .title{
+      font-size:64px;
+
+      font-weight:800;
+
+      letter-spacing:3px;
+
+      margin-bottom:20px;
+
+      text-transform:uppercase;
+    }
+
+    /* ТЕКСТ */
+
+    .subtitle{
+      color:#b8b8b8;
+
+      font-size:18px;
+
+      line-height:1.8;
+
+      max-width:520px;
+
+      margin:0 auto 40px;
+    }
+
+    /* КНОПКА */
+
+    .back{
+      display:inline-flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      text-decoration:none;
+
+      color:white;
+
+      background:#111;
+
+      border:1px solid #222;
+
+      padding:16px 30px;
+
+      border-radius:999px;
+
+      transition:0.3s;
+    }
+
+    .back:hover{
+      background:white;
+
+      color:black;
+
+      transform:translateY(-3px);
+    }
+
+    /* NOISE */
+
+    .container::after{
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+
+      opacity:0.04;
+
+      mix-blend-mode:soft-light;
+
+      pointer-events:none;
+
+      border-radius:34px;
+    }
+
+    /* МОБИЛКА */
+
+    @media(max-width:700px){
+
+      .container{
+        padding:50px 25px;
+      }
+
+      .title{
+        font-size:42px;
+      }
+
+      .subtitle{
+        font-size:16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- GLOW -->
+
+  <div class="bg-glow"></div>
+
+  <!-- КОНТЕНТ -->
+
+  <div class="container">
+
+    <div class="star">
+      ✦
+    </div>
+
+    <h1 class="title">
+      Упс...
+    </h1>
+
+    <div class="subtitle">
+
+      Мы всё ещё формируем данную страницу<br><br>
+
+      Пока здесь ничего нет,  
+      но совсем скоро появится новый контент :)
+
+    </div>
+
+    <a href="index.html" class="back">
+      Вернуться назад
+    </a>
+
+  </div>
+
+</body>
+</html>

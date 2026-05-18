@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+
+  <title>404 — EVASHA</title>
+
+  <!-- Шрифт -->
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#050505;
+
+      color:white;
+
+      font-family:'Montserrat', sans-serif;
+
+      min-height:100vh;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      overflow:hidden;
+
+      padding:20px;
+    }
+
+    /* BACKGROUND GLOW */
+
+    .glow{
+      position:fixed;
+
+      width:600px;
+      height:600px;
+
+      background:
+      radial-gradient(
+        circle,
+        rgba(255,255,255,0.05),
+        transparent 70%
+      );
+
+      filter:blur(100px);
+
+      animation:float 7s ease-in-out infinite;
+
+      z-index:0;
+    }
+
+    @keyframes float{
+
+      0%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-30px);
+      }
+
+      100%{
+        transform:translateY(0px);
+      }
+
+    }
+
+    /* CONTAINER */
+
+    .container{
+      position:relative;
+
+      z-index:2;
+
+      width:100%;
+      max-width:760px;
+
+      background:#0b0b0b;
+
+      border:1px solid #1d1d1d;
+
+      border-radius:34px;
+
+      padding:80px 40px;
+
+      text-align:center;
+
+      overflow:hidden;
+
+      box-shadow:
+      0 0 60px rgba(255,255,255,0.03);
+    }
+
+    /* NOISE */
+
+    .container::after{
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      background-image:
+      url("https://grainy-gradients.vercel.app/noise.svg");
+
+      opacity:0.04;
+
+      mix-blend-mode:soft-light;
+
+      pointer-events:none;
+    }
+
+    /* 404 */
+
+    .code{
+      font-size:120px;
+
+      font-weight:800;
+
+      line-height:1;
+
+      margin-bottom:20px;
+
+      letter-spacing:6px;
+
+      opacity:0.95;
+    }
+
+    /* TITLE */
+
+    .title{
+      font-size:34px;
+
+      font-weight:700;
+
+      margin-bottom:18px;
+
+      text-transform:uppercase;
+
+      letter-spacing:2px;
+    }
+
+    /* TEXT */
+
+    .subtitle{
+      color:#b5b5b5;
+
+      font-size:17px;
+
+      line-height:1.8;
+
+      max-width:500px;
+
+      margin:0 auto 40px;
+    }
+
+    /* BUTTON */
+
+    .home-btn{
+      display:inline-flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      text-decoration:none;
+
+      color:white;
+
+      background:#111;
+
+      border:1px solid #222;
+
+      padding:16px 32px;
+
+      border-radius:999px;
+
+      transition:0.3s;
+    }
+
+    .home-btn:hover{
+      background:white;
+
+      color:black;
+
+      transform:translateY(-3px);
+    }
+
+    /* STAR */
+
+    .star{
+      position:absolute;
+
+      top:30px;
+      right:35px;
+
+      font-size:18px;
+
+      opacity:0.5;
+
+      animation:blink 2s infinite;
+    }
+
+    @keyframes blink{
+
+      0%{
+        opacity:0.3;
+        transform:scale(1);
+      }
+
+      50%{
+        opacity:1;
+        transform:scale(1.15);
+      }
+
+      100%{
+        opacity:0.3;
+        transform:scale(1);
+      }
+
+    }
+
+    /* MOBILE */
+
+    @media(max-width:700px){
+
+      .container{
+        padding:60px 24px;
+      }
+
+      .code{
+        font-size:82px;
+      }
+
+      .title{
+        font-size:26px;
+      }
+
+      .subtitle{
+        font-size:15px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- GLOW -->
+
+  <div class="glow"></div>
+
+  <!-- CONTENT -->
+
+  <div class="container">
+
+    <div class="star">
+      ✦
+    </div>
+
+    <div class="code">
+      404
+    </div>
+
+    <div class="title">
+      Страница не найдена
+    </div>
+
+    <div class="subtitle">
+
+      Похоже, эта страница исчезла  
+      или ещё не была создана.
+
+    </div>
+
+    <a href="index.html"
+       class="home-btn">
+
+      Вернуться назад
+
+    </a>
+
+  </div>
+
+</body>
+</html>
