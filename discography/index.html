@@ -376,6 +376,59 @@
 
     }
 
+    .card-flip{
+  position:relative;
+  width:100%;
+  height:100%;
+
+  transform-style:preserve-3d;
+  transition:0.8s;
+}
+
+.card.active .card-flip{
+  transform:rotateY(180deg);
+}
+
+.card-front,
+.card-back{
+  position:absolute;
+  inset:0;
+
+  backface-visibility:hidden;
+
+  border-radius:28px;
+  overflow:hidden;
+}
+
+.card-back{
+  background:#0f0f0f;
+
+  border:1px solid #1c1c1c;
+
+  transform:rotateY(180deg);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+}
+
+.soon-title{
+  font-size:30px;
+  font-weight:800;
+
+  margin-bottom:12px;
+}
+
+.soon-date{
+  font-size:50px;
+  font-weight:800;
+
+  color:#8a8a8a;
+}
+
   </style>
 </head>
 
@@ -394,6 +447,56 @@
     </h1>
 
     <div class="grid">
+
+      <div class="card soon-card">
+
+  <div class="card-flip">
+
+    <!-- Лицевая сторона -->
+
+    <div class="card-front">
+
+      <div class="cover-wrapper">
+
+        <img
+          src="pozhar.jpg"
+          class="cover"
+          draggable="false"
+        >
+
+      </div>
+
+      <div class="info">
+
+        <div class="track">
+         в доме снова пожар
+        </div>
+
+        <div class="listen">
+          Скоро
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Обратная сторона -->
+
+    <div class="card-back">
+
+      <div class="soon-title">
+        Релиз состоится
+      </div>
+
+      <div class="soon-date">
+        05.06
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
       <!-- ТРЕК -->
 
@@ -1841,6 +1944,18 @@
     })
 
   </script>
+
+  <script>
+
+document.querySelectorAll('.soon-card').forEach(card => {
+
+  card.addEventListener('click', () => {
+    card.classList.toggle('active');
+  });
+
+});
+
+</script>
 
 </body>
 </html>
