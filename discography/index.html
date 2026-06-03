@@ -393,8 +393,15 @@
   transform:rotateY(180deg);
 }
 
-.card-front{
-  position:relative;
+.card-front,
+.card-back{
+  position:absolute;
+  inset:0;
+
+  backface-visibility:hidden;
+
+  border-radius:28px;
+  overflow:hidden;
 }
 
 .card-back{
